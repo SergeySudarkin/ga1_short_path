@@ -1,0 +1,29 @@
+.program {
+	padding: 40px 0;
+}
+
+.tabs {
+	display: inline-flex;
+	justify-content: start;
+	align-items: center;
+	border: 1px solid skyblue;
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.tab {
+	padding: 15px;
+	transition: all 0.2s ease-in-out;
+}
+
+.tab:not(:last-child) {
+	border-right: 1px solid skyblue;
+}
+
+.active {
+	background-color: rgba(135, 206, 235, 1) !important;
+}
+
+.tab:hover {
+	background-color: rgba(135, 206, 235, 0.4);
+}

@@ -1,0 +1,24 @@
+.settingsParameters {
+	width: 360px;
+	grid-area: parameters;
+}
+
+.parameters {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+select {
+	width: 150px;
+	border: 1px solid grey;
+	padding: 8px;
+	border-radius: 10px;
+	padding-left: 15px;
+	outline: none;
+}
+
+input:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}

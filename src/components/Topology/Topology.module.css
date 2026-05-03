@@ -1,0 +1,56 @@
+fieldset {
+	border: 2px groove threedface;
+	padding: 20px;
+}
+
+.settingsTopology {
+	width: 360px;
+	grid-area: topology;
+}
+
+legend {
+	padding: 0 2px;
+}
+
+.topology {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+label {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+}
+
+input {
+	width: 100px;
+	border: 1px solid grey;
+	padding: 8px;
+	border-radius: 10px;
+	padding-left: 15px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	opacity: 1;
+	cursor: pointer;
+}
+
+hr {
+	border-style: inset;
+	border-width: 1px;
+}
+
+.randomWeightBtn {
+	padding: 15px;
+	border-radius: 25px;
+	background-color: rgb(135, 206, 235, 1);
+	transition: all 0.2s ease-in-out;
+}
+
+.randomWeightBtn:hover {
+	background-color: rgb(135, 206, 235, 0.5);
+}

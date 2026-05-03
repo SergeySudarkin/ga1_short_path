@@ -1,0 +1,10 @@
+.settings {
+	margin-top: 50px;
+	display: grid;
+	grid-template-areas:
+		"topology matrix"
+		"parameters matrix";
+	gap: 40px;
+	grid-template-columns: auto 1fr;
+	align-items: start;
+}

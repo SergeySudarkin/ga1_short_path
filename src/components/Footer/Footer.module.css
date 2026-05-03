@@ -1,0 +1,24 @@
+.footer {
+	background-color: skyblue;
+}
+
+.wrapper {
+	padding: 20px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.wrapper p:nth-child(1) {
+	flex-basis: 40%;
+}
+
+p a:visited {
+	color: blue;
+}

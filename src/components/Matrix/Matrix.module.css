@@ -1,0 +1,24 @@
+.matrix {
+	width: fit-content;
+	min-width: 0;
+	max-width: 930px;
+	max-height: 1025px;
+	overflow: auto;
+	grid-area: matrix;
+}
+
+table,
+th,
+td {
+	border: 1px solid grey;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th,
+td {
+	padding: 10px;
+	text-align: center;
+}
