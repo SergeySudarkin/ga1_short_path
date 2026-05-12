@@ -3,6 +3,10 @@ import { useSettings } from '../../hooks/useSettings';
 import { generatePopulation } from '../../ga_scripts/generatePopulations';
 import { getStats } from '../../ga_scripts/getStats';
 import { selection } from '../../ga_scripts/selection';
+import { crossover } from '../../ga_scripts/crossover';
+import { sortedPopulation } from '../../ga_scripts/sortedPopulation';
+import { recalculatePopulation } from '../../ga_scripts/recalculatePopulation';
+import { mutation } from '../../ga_scripts/mutation';
 
 export const Cycle = () => {
     const { settings, matrix, pop, setPop, generations, setGenerations } = useSettings();
@@ -33,11 +37,21 @@ export const Cycle = () => {
                 return;
             }
 
-            let nextPopulation = selection(population, settings.selection, settings.coefTour);
-            // population = crossover(population);
-            // population = mutation(population);
-            // population = sortedPopulation(population);
-            population = nextPopulation;
+            population = sortedPopulation(population);
+            const elite = population.slice(0, settings.elitism).map(item => ({
+                chromosome: [...item.chromosome],
+                path: item.path,
+                fitness: item.fitness
+            }));
+
+            population = selection(population, settings.selection, settings.coefTour);
+            population = crossover(population, settings.crossover, settings.chanceCrossover);
+            population = mutation(population, settings.chanceMutation, settings.countPeaks);
+            population = recalculatePopulation(population, matrix);
+            population = sortedPopulation(population);
+            population.splice(population.length - settings.elitism, settings.elitism);
+            population.push(...elite);
+            population = sortedPopulation(population);
 
             const stats = getStats(population);
 
@@ -59,8 +73,8 @@ export const Cycle = () => {
     return (
         <div className={styles.cycle}>
             <div className={styles.cycleBtns}>
-                <button className={styles.startBtn} onClick={handleGeneratePopulation} disabled={(generations.length > 1) && (generations.length !== settings.generations) ? true : false}>Инициализировать</button>
-                <button className={styles.startBtn} onClick={handleRun} disabled={generations.length !== 1 ? true : false}>Запуск</button>
+                <button className={styles.startBtn} onClick={handleGeneratePopulation} disabled={(generations.length > 1) && (generations.length != settings.generations) ? true : false}>Инициализировать</button>
+                <button className={styles.startBtn} onClick={handleRun} disabled={generations.length != 1 ? true : false}>Запуск</button>
             </div>
             <div className={styles.aggregated}>
                 <h3>Агрегированные данные по поколениям</h3>
@@ -97,13 +111,13 @@ export const Cycle = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {generations.length === settings.generations && (
+                        {generations.length == settings.generations && (
                             generations[settings.generations - 1].population.map((pop, idx) => (
                                 <tr key={idx + 1}>
                                     <td>{idx + 1}</td>
                                     <td>{pop.chromosome.join(" -> ")}</td>
                                     <td>{pop.path}</td>
-                                    <td>{pop.fitness}</td>
+                                    <td>{pop.fitness.toFixed(4)}</td>
                                 </tr>
                             ))
                         )}

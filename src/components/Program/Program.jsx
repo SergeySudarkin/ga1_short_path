@@ -21,7 +21,7 @@ export const Program = () => {
         generations: 200,
         coefTour: 2,
         chanceCrossover: 0.8,
-        chanceMutation: 0.2
+        chanceMutation: 0.3
     });
 
     const [matrix, setMatrix] = useState([]);

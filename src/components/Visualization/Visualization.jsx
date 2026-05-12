@@ -1,3 +1,4 @@
+import { useSettings } from '../../hooks/useSettings';
 import { Cycle } from '../Cycle/Cycle';
 import { Graph } from '../Graph/Graph';
 import styles from './Visualization.module.css'
@@ -5,6 +6,8 @@ import { useState } from 'react';
 
 export const Visualization = () => {
     const [mode, setMode] = useState("cycle");
+    const { matrix } = useSettings();
+
 
     return (
         <div className={styles.visualization}>
@@ -21,9 +24,11 @@ export const Visualization = () => {
                     {mode === "step" ? "hth" : null}
                 </div>
             </div>
-            <div className={styles.graph}>
-                <Graph />
-            </div>
+            {matrix.length ?
+                <div className={styles.graph}>
+                    <Graph />
+                </div>
+                : ""}
         </div>
     );
 };

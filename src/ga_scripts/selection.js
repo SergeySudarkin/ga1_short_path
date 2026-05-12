@@ -1,5 +1,4 @@
 import { getRandom } from "../helpers/getRandom";
-import { sortedPopulation } from "./sortedPopulation";
 
 export const selection = (pop, optionSel, coefTour) => {
     if (optionSel === "tournament") {
@@ -16,7 +15,7 @@ export const selection = (pop, optionSel, coefTour) => {
                 chromosome: [...tourEl.chromosome]
             });
         }
-        return sortedPopulation(population);
+        return population;
     } else if (optionSel === "roulette") {
         let population = [];
         let popStats = [];
@@ -38,12 +37,15 @@ export const selection = (pop, optionSel, coefTour) => {
                 const prevSector = idx === 0 ? 0 : arr[idx - 1].sectorArea;
                 return (sectorPercent >= prevSector && sectorPercent <= item.sectorArea);
             })
-            if (!chrom) continue;
+            if (!chrom) {
+                i--;
+                continue;
+            };
             population.push({
                 ...chrom,
                 chromosome: [...chrom.chromosome]
             });
         }
-        return sortedPopulation(population);
+        return population;
     }
 }
