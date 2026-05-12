@@ -1,24 +1,6 @@
 import { useSettings } from '../../hooks/useSettings';
+import { generateMatrix } from './../../helpers/generateMatrix'
 import styles from './Topology.module.css'
-
-const getRandom = (min, max) => Math.floor(Math.random() * (Number(max) - Number(min) + 1)) + Number(min);
-
-const generateMatrix = (n, min, max) => {
-    const matrix = Array.from({ length: n }, () => Array(n).fill(0));
-
-    for (let i = 0; i < n; i++) {
-        for (let j = i; j < n; j++) {
-            if (i === j) {
-                matrix[i][j] = 0;
-            } else {
-                const value = getRandom(min, max);
-                matrix[i][j] = value;
-                matrix[j][i] = value;
-            }
-        }
-    }
-    return matrix;
-}
 
 export const Topology = () => {
     const { settings, setSettings, setMatrix } = useSettings();

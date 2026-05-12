@@ -18,14 +18,14 @@ legend {
 	gap: 20px;
 }
 
-label {
+.topology label {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 20px;
 }
 
-input {
+.topology label input {
 	width: 100px;
 	border: 1px solid grey;
 	padding: 8px;

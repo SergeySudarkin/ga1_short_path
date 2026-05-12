@@ -25,6 +25,8 @@ export const Program = () => {
     });
 
     const [matrix, setMatrix] = useState([]);
+    const [pop, setPop] = useState([]);
+    const [generations, setGenerations] = useState([]);
 
     useEffect(() => {
         setMatrix([])
@@ -37,7 +39,7 @@ export const Program = () => {
                     <button className={`${styles.tab} ${activeTab == 'settings' ? styles.active : ""}`} onClick={() => setActiveTab("settings")}>Настройки</button>
                     <button className={`${styles.tab} ${activeTab == 'visualization' ? styles.active : ""}`} onClick={() => setActiveTab("visualization")}>Визуализация</button>
                 </div>
-                <SettingsContext.Provider value={{ settings, setSettings, matrix, setMatrix }}>
+                <SettingsContext.Provider value={{ settings, setSettings, matrix, setMatrix, pop, setPop, generations, setGenerations }}>
                     {activeTab === "settings" ? <Settings /> : null}
                     {activeTab === "visualization" ? <Visualization /> : null}
                 </SettingsContext.Provider>

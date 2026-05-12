@@ -22,3 +22,18 @@ input:disabled {
 	cursor: not-allowed;
 	opacity: 0.5;
 }
+
+.parameters label {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+}
+
+.parameters label input {
+	width: 100px;
+	border: 1px solid grey;
+	padding: 8px;
+	border-radius: 10px;
+	padding-left: 15px;
+}

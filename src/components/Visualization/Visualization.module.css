@@ -1,0 +1,28 @@
+.visualization {
+	margin-top: 50px;
+	display: flex;
+}
+
+.mode {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 15px;
+}
+
+.mode input {
+	width: auto;
+}
+
+.mode span {
+	font-weight: 500;
+}
+
+.content {
+	margin-top: 30px;
+}
+
+.graph {
+	width: 800px;
+	height: 800px;
+}

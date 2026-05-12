@@ -1,0 +1,1 @@
+export const getRandom = (min, max) => Math.floor(Math.random() * (Number(max) - Number(min) + 1)) + Number(min);
