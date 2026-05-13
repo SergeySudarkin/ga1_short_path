@@ -14,6 +14,7 @@ export const Step = () => {
     const [afterPop, setAfterPop] = useState([]);
     const [currentPopulation, setCurrentPopulation] = useState([]);
     const [generations, setGenerations] = useState([]);
+    const [elite, setElite] = useState([]);
 
     const { settings, matrix, setBestChromosome } = useSettings();
 
@@ -39,6 +40,12 @@ export const Step = () => {
         let newPopulation = [...currentPopulation];
 
         if (step === 0) {
+            const elitePopulation = newPopulation.slice(0, settings.elitism).map(item => ({
+                chromosome: [...item.chromosome],
+                path: item.path,
+                fitness: item.fitness
+            }));
+            setElite(elitePopulation);
             setBeforePop(newPopulation);
             newPopulation = selection(newPopulation, settings.selection, settings.coefTour);
             setAfterPop(newPopulation);
@@ -57,10 +64,6 @@ export const Step = () => {
             setCurrentPopulation(newPopulation);
             setStep(3);
         } else if (step === 3) {
-            const elite = newPopulation.slice(0, settings.elitism).map(item => ({
-                ...item,
-                chromosome: [...item.chromosome]
-            }));
             setBeforePop(newPopulation);
             newPopulation = recalculatePopulation(newPopulation, matrix);
             newPopulation = sortedPopulation(newPopulation);
