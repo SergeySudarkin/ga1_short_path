@@ -7,15 +7,17 @@ import { crossover } from '../../ga_scripts/crossover';
 import { sortedPopulation } from '../../ga_scripts/sortedPopulation';
 import { recalculatePopulation } from '../../ga_scripts/recalculatePopulation';
 import { mutation } from '../../ga_scripts/mutation';
+import { useState } from 'react';
 
 export const Cycle = () => {
-    const { settings, matrix, pop, setPop, generations, setGenerations } = useSettings();
+    const { settings, matrix, setBestChromosome } = useSettings();
+    const [generations, setGenerations] = useState([]);
 
     const handleGeneratePopulation = () => {
         const population = generatePopulation(settings.populationSize, settings.lengthChrom, settings.startPeak, settings.endPeak, matrix);
         const stats = getStats(population);
 
-        setPop(population);
+        setBestChromosome(population[0].chromosome);
         setGenerations([
             {
                 generation: 1,
@@ -57,6 +59,7 @@ export const Cycle = () => {
 
             const nextGenNumber = currentGen + 1;
 
+            setBestChromosome(population[0].chromosome);
             setGenerations((prev) => [
                 ...prev,
                 {
@@ -76,8 +79,8 @@ export const Cycle = () => {
                 <button className={styles.startBtn} onClick={handleGeneratePopulation} disabled={(generations.length > 1) && (generations.length != settings.generations) ? true : false}>Инициализировать</button>
                 <button className={styles.startBtn} onClick={handleRun} disabled={generations.length != 1 ? true : false}>Запуск</button>
             </div>
+            <h3 className={styles.title}>Агрегированные данные по поколениям</h3>
             <div className={styles.aggregated}>
-                <h3>Агрегированные данные по поколениям</h3>
                 <table>
                     <thead>
                         <tr>
@@ -99,8 +102,8 @@ export const Cycle = () => {
                     </tbody>
                 </table>
             </div>
+            <h3 className={styles.title}>Итоговый набор хромосом</h3>
             <div className={styles.set}>
-                <h3>Итоговый набор хромосом</h3>
                 <table>
                     <thead>
                         <tr>

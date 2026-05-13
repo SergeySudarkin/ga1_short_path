@@ -1,7 +1,7 @@
-.cycle {
+.step {
 }
 
-.cycleBtns {
+.stepBtns {
 	display: flex;
 	justify-content: start;
 	align-items: center;
@@ -25,21 +25,28 @@
 	opacity: 0.5;
 }
 
+.info {
+	padding: 15px;
+	border-radius: 25px;
+	border: 1px solid rgb(135, 206, 235, 1);
+}
+
+.stepDatas {
+	display: flex;
+	gap: 50px;
+}
+
 .title {
 	margin-bottom: 15px;
 }
 
-.aggregated table,
-.set table {
-	width: 600px;
+.beforeOperator table,
+.afterOperator table {
+	width: 410px;
 }
 
-.aggregated {
-	margin-bottom: 50px;
-}
-
-.aggregated,
-.set {
+.beforeOperator,
+.afterOperator {
 	width: fit-content;
 	max-height: 600px;
 	overflow: auto;

@@ -2,7 +2,7 @@ import { } from "react";
 import { useSettings } from './../../hooks/useSettings'
 
 export const Graph = () => {
-    const { settings, matrix, generations } = useSettings();
+    const { settings, matrix, bestChromosome } = useSettings();
 
     const n = matrix.length;
 
@@ -22,7 +22,6 @@ export const Graph = () => {
         };
     });
 
-    const bestChromosome = generations.at(-1)?.population[0]?.chromosome || [];
     const bestEdges = new Set();
 
     for (let i = 0; i < bestChromosome.length - 1; i++) {
