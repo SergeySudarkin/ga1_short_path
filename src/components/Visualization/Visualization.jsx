@@ -29,7 +29,7 @@ export const Visualization = () => {
                 <div className={styles.graph}>
                     <Graph />
                 </div>
-                : ""}
+                : null}
         </div>
     );
 };
